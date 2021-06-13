@@ -1,4 +1,5 @@
 import { ReactComponent as InfoIcon } from "../../assets/images/icon-info.svg";
+import { ReactComponent as StarIcon } from "../../assets/images/icon-star.svg";
 import "./card.styles.css";
 
 export default function Card({ id, images, title, rating, price }) {
@@ -14,6 +15,7 @@ export default function Card({ id, images, title, rating, price }) {
             <InfoIcon />
           </div>
           <div className="info-icon-content">
+            <StarIcon />
             <div>{rating.rate}</div>
             <div>{rating.count}</div>
           </div>
