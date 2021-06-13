@@ -1,0 +1,133 @@
+:root {
+  --radius: 20px;
+  --transition: all 0.5s ease;
+}
+
+.card-container {
+  margin: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0px 6px 15px rgb(0 0 0 / 15%);
+  -webkit-transform: scale(0.95); /* WebKit (Chrome, Safari...) */
+  -moz-transform: scale(0.95); /* Mozilla */
+  -o-transform: scale(0.95); /* Opera */
+  -ms-transform: scale(0.95); /* Internet Explorer */
+  transform: scale(0.95);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -o-transition: var(--transition);
+  -ms-transition: var(--transition);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.card-container:hover {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ----- Image Effects ----- */
+
+.card-image-container {
+  border-top-right-radius: var(--radius);
+  border-top-left-radius: var(--radius);
+  width: 285px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image-container .card-images {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.card-image-container .card-images img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.card-image-container .card-images img:nth-of-type(1) {
+  filter: grayscale(0.4) brightness(95%);
+}
+
+.card-image-container .card-images img:nth-of-type(2) {
+  -webkit-clip-path: ellipse(0 0 at 0 100%);
+  clip-path: ellipse(0 0 at 0 100%);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -o-transition: var(--transition);
+  -ms-transition: var(--transition);
+  transition: var(--transition);
+}
+.card-container:hover .card-images img:nth-of-type(2) {
+  -webkit-clip-path: ellipse(150% 150% at 0 100%);
+  clip-path: ellipse(150% 150% at 0 100%);
+}
+
+/* ----- Info Icon effects ----- */
+
+.info-icon-container {
+  background: #92879b;
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  border-radius: 0px 0px 200px 200px;
+  transition: all 0.5s, border-radius 2s, top 1s;
+  overflow: hidden;
+}
+
+.info-icon-container:hover {
+  width: 100%;
+  right: 0;
+  top: 0;
+  border-radius: 0;
+  height: 100%;
+}
+
+.info-icon-container .info-icon {
+  position: absolute;
+  right: 85px;
+  top: 85px;
+  color: white;
+  opacity: 1;
+}
+
+.info-icon-container:hover .info-icon {
+  opacity: 0;
+  right: 15px;
+  top: 15px;
+}
+
+.info-icon-container .info-icon:hover .info-icon-content {
+  opacity: 1;
+  transform: scale(1);
+  transform: translateY(0);
+}
+.info-icon-container .info-icon .info-icon-content {
+  padding: 5%;
+  opacity: 0;
+  transform: scale(0.5);
+  transform: translateY(-200%);
+  transition: opacity 0.2s, transform 0.8s;
+}
+.info-icon-container .info-icon .info-icon-content div {
+  text-align: left;
+  width: 100%;
+}
+
+.info-icon-container .info-icon .info-icon-content div {
+  color: white;
+}
+.info-icon-container .info-icon .info-icon-content p {
+  font-size: 13px;
+}
