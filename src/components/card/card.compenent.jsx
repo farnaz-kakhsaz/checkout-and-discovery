@@ -1,19 +1,11 @@
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { getDiscount } from "../../helper/getDiscount";
 // Images
 import { ReactComponent as InfoIcon } from "../../assets/images/icon-info.svg";
 import { ReactComponent as StarIcon } from "../../assets/images/icon-star.svg";
 // CSS
 import "./card.styles.css";
 
-export default function Card({ id, images, title, rating, price }) {
-  const [discount, setDiscount] = useState("");
-  useEffect(
-    () => setDiscount(getDiscount(price.selling_price, price.rrp_price)),
-    [price.selling_price, price.rrp_price]
-  );
-
+export default function Card({ id, images, title, rating, price, discount }) {
   return (
     <div className="card-container" key={id}>
       <div className="card-image-container">
@@ -62,4 +54,5 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   rating: PropTypes.object.isRequired,
   price: PropTypes.object.isRequired,
+  discount: PropTypes.number.isRequired,
 };
