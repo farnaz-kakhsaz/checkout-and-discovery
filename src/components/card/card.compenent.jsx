@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { getDiscount } from "../../helper/getDiscount";
 // Images
 import { ReactComponent as InfoIcon } from "../../assets/images/icon-info.svg";
@@ -23,11 +24,20 @@ export default function Card({ id, images, title, rating, price }) {
         <div className="info-icon-container">
           <InfoIcon className="info-icon" />
           <div className="info-icon-content">
-            <StarIcon />
-            <div className="rate">{rating.rate}</div>
-            <div className="count">({rating.count})</div>
+            {rating.count ? (
+              <>
+                <StarIcon />
+                <div className="rate">{rating.rate}</div>
+                <div className="count">({rating.count})</div>
+              </>
+            ) : (
+              ""
+            )}
             {price.selling_price !== price.rrp_price && (
-              <div className="discount">{discount}% تخفیف شما از این خرید!</div>
+              <div className="discount">
+                <div className="discount-percent">%{discount}</div> تخفیف شما از
+                این خرید!
+              </div>
             )}
           </div>
         </div>
@@ -45,3 +55,11 @@ export default function Card({ id, images, title, rating, price }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  id: PropTypes.number.isRequired,
+  images: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  rating: PropTypes.object.isRequired,
+  price: PropTypes.object.isRequired,
+};
