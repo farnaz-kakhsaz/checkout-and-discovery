@@ -5,16 +5,18 @@ import PaginationItem from "./pagination-item.componet";
 import "./pagination-container.styles.css";
 
 export default function Pagination({
+  currentPageNumber,
   paginationNumbers,
   handlePaginationClick,
 }) {
   return (
     <div className="pagination-container">
-      {paginationNumbers.map((item) => (
+      {paginationNumbers.map((pageNumber) => (
         <PaginationItem
-          item={item}
+          currentPageNumber={currentPageNumber}
+          pageNumber={pageNumber}
           handlePaginationClick={handlePaginationClick}
-          key={item}
+          key={pageNumber}
         />
       ))}
     </div>
@@ -22,6 +24,7 @@ export default function Pagination({
 }
 
 Pagination.propTypes = {
+  currentPageNumber: PropTypes.number.isRequired,
   paginationNumbers: PropTypes.array.isRequired,
   handlePaginationClick: PropTypes.func.isRequired,
 };

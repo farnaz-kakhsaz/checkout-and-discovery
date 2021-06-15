@@ -2,19 +2,28 @@ import PropTypes from "prop-types";
 // CSS
 import "./pagination-item.styles.css";
 
-export default function PaginationItem({ item, handlePaginationClick }) {
+export default function PaginationItem({
+  currentPageNumber,
+  pageNumber,
+  handlePaginationClick,
+}) {
   return (
     <button
       className="pagination-item"
-      key={item}
-      onClick={() => handlePaginationClick(item)}
+      key={pageNumber}
+      onClick={() => handlePaginationClick(pageNumber)}
+      style={{
+        backgroundColor:
+          currentPageNumber === pageNumber ? "#63adb6" : "#9b97b5",
+      }}
     >
-      {item}
+      {pageNumber}
     </button>
   );
 }
 
 PaginationItem.propTypes = {
-  item: PropTypes.number.isRequired,
+  currentPageNumber: PropTypes.number.isRequired,
+  pageNumber: PropTypes.number.isRequired,
   handlePaginationClick: PropTypes.func.isRequired,
 };

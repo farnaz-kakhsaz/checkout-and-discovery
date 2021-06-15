@@ -11,8 +11,8 @@ import "./home-page.styles.css";
 
 export default function HomePage() {
   const [productList, setProductList] = useState([]);
-  const [currentPageNumber, setCurrentPageNumber] = useState(4);
-  const [totalPagesNumbers, setTotalPagesNumbers] = useState(1);
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
 
   useEffect(() => {
     getPLP(currentPageNumber).then((data) => {
@@ -43,6 +43,7 @@ export default function HomePage() {
         ))}
       </div>
       <Pagination
+        currentPageNumber={currentPageNumber}
         paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
         handlePaginationClick={handlePaginationClick}
       />
