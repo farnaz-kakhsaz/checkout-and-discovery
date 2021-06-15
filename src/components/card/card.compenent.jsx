@@ -1,8 +1,18 @@
+import { useEffect, useState } from "react";
+import { getDiscount } from "../../helper/getDiscount";
+// Images
 import { ReactComponent as InfoIcon } from "../../assets/images/icon-info.svg";
 import { ReactComponent as StarIcon } from "../../assets/images/icon-star.svg";
+// CSS
 import "./card.styles.css";
 
 export default function Card({ id, images, title, rating, price }) {
+  const [discount, setDiscount] = useState("");
+  useEffect(
+    () => setDiscount(getDiscount(price.selling_price, price.rrp_price)),
+    [price.selling_price, price.rrp_price]
+  );
+
   return (
     <div className="card-container" key={id}>
       <div className="card-image-container">
@@ -11,19 +21,27 @@ export default function Card({ id, images, title, rating, price }) {
           <img src={images.main} alt={title}></img>
         </div>
         <div className="info-icon-container">
-          <div className="info-icon">
-            <InfoIcon />
-          </div>
+          <InfoIcon className="info-icon" />
           <div className="info-icon-content">
             <StarIcon />
-            <div>{rating.rate}</div>
-            <div>{rating.count}</div>
+            <div className="rate">{rating.rate}</div>
+            <div className="count">({rating.count})</div>
+            {price.selling_price !== price.rrp_price && (
+              <div className="discount">{discount}% تخفیف شما از این خرید!</div>
+            )}
           </div>
         </div>
       </div>
-      <div>{title}</div>
-      {price.selling_price !== price.rrp_price && <div>{price.rrp_price}</div>}
-      <div>{price.selling_price}</div>
+      <div className="card-footer">
+        <div className="card-title">{title}</div>
+        <div className="price-container">
+          <div className="price-toman">تومان</div>
+          <div className="price-new">{price.selling_price}</div>
+          {price.selling_price !== price.rrp_price && (
+            <div className="price-old">{price.rrp_price}</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
