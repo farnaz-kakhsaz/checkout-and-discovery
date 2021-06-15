@@ -2,8 +2,8 @@
   --primary-color: #9b97b5;
   --secondary-color: #b5a897;
   --red-color: #ef394e;
-  --light-gray: #f7f7f7;
-  --dark-gray: #acacac;
+  --gray-light-color: #f7f7f7;
+  --gray-dark-color: #acacac;
   --radius: 20px;
   --transition: all 0.5s ease;
 }
@@ -114,7 +114,7 @@
   right: 85px;
   top: 85px;
   opacity: 1;
-  fill: var(--light-gray);
+  fill: var(--gray-light-color);
   width: 28px;
   height: 28px;
 }
@@ -166,7 +166,7 @@
 
 .info-icon-container .info-icon-content .rate,
 .info-icon-container .info-icon-content .count {
-  color: var(--light-gray);
+  color: var(--gray-light-color);
 }
 
 .info-icon-container .info-icon-content .rate {
@@ -208,7 +208,7 @@
 
 .price-old {
   text-decoration: line-through;
-  color: var(--dark-gray);
+  color: var(--gray-dark-color);
   font-size: 1.1rem;
 }
 
