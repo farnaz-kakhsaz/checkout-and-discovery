@@ -1,4 +1,4 @@
-const getPaginationNumbers = (totalPages) =>
-  Array.from({ length: totalPages }, (_, i) => i + 1);
+const getPaginationNumbers = (totalPagesNumbers) =>
+  Array.from({ length: totalPagesNumbers }, (_, i) => i + 1);
 
 export { getPaginationNumbers };

@@ -11,19 +11,22 @@ import "./home-page.styles.css";
 
 export default function HomePage() {
   const [productList, setProductList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [currentPageNumber, setCurrentPageNumber] = useState(4);
+  const [totalPagesNumbers, setTotalPagesNumbers] = useState(1);
 
   useEffect(() => {
-    getPLP(currentPage).then((data) => {
+    getPLP(currentPageNumber).then((data) => {
       setProductList(data?.data);
-      setTotalPages(data?.data?.pager.total_pages);
+      setTotalPagesNumbers(data?.data?.pager.total_pages);
     });
     // setProductList(JSON.parse(localStorage.getItem("data")));
-  }, [currentPage]);
+  }, [currentPageNumber]);
+
+  const handlePaginationClick = (newPageNumber) => {
+    setCurrentPageNumber(newPageNumber);
+  };
 
   console.log("productList: ", productList);
-  console.log("getPaginationNumbers: ", getPaginationNumbers(totalPages));
 
   return (
     <div className="home-page-container">
@@ -39,7 +42,10 @@ export default function HomePage() {
           />
         ))}
       </div>
-      <Pagination paginationNumbers={getPaginationNumbers(totalPages)} />
+      <Pagination
+        paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
+        handlePaginationClick={handlePaginationClick}
+      />
     </div>
   );
 }

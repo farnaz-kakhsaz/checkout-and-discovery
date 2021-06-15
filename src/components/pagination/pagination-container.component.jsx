@@ -4,15 +4,24 @@ import PaginationItem from "./pagination-item.componet";
 // CSS
 import "./pagination-container.styles.css";
 
-export default function Pagination({ paginationNumbers }) {
-  console.log(paginationNumbers);
+export default function Pagination({
+  paginationNumbers,
+  handlePaginationClick,
+}) {
   return (
     <div className="pagination-container">
       {paginationNumbers.map((item) => (
-        <PaginationItem item={item} key={item} />
+        <PaginationItem
+          item={item}
+          handlePaginationClick={handlePaginationClick}
+          key={item}
+        />
       ))}
     </div>
   );
 }
 
-Pagination.propTypes = { paginationNumbers: PropTypes.array.isRequired };
+Pagination.propTypes = {
+  paginationNumbers: PropTypes.array.isRequired,
+  handlePaginationClick: PropTypes.func.isRequired,
+};
