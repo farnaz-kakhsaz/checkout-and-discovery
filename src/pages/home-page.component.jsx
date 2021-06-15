@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 // Functions
-import { getPLP } from "../../services/handleResponse";
-import { getDiscount } from "../../helper/getDiscount";
-import { getPaginationNumbers } from "../../helper/getPaginationNumbers";
+import { getPLP } from "../services/handleResponse";
+import { getDiscount } from "../helper/getDiscount";
+import { getPaginationNumbers } from "../helper/getPaginationNumbers";
 // Components
-import Card from "../card/card.compenent";
-import Pagination from "../pagination/pagination-container.component";
+import Card from "../components/card/card.compenent";
+import Pagination from "../components/pagination/pagination-container.component";
 // CSS
 import "./home-page.styles.css";
 
