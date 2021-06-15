@@ -1,10 +1,17 @@
 :root {
+  --primary-color: #9a96b4;
+  --secondary-color: #b4a796;
+  --light-gray: #f7f7f7;
+  --dark-gray: #acacac;
   --radius: 20px;
   --transition: all 0.5s ease;
 }
 
 .card-container {
-  margin: 20px;
+  margin: 5px;
+  height: 459px;
+  max-width: 285px;
+  width: 100%;
   border-radius: var(--radius);
   box-shadow: 0px 6px 15px rgb(0 0 0 / 15%);
   -webkit-transform: scale(0.95); /* WebKit (Chrome, Safari...) */
@@ -17,6 +24,8 @@
   -o-transition: var(--transition);
   -ms-transition: var(--transition);
   transition: var(--transition);
+  background-color: var(--light-gray);
+  text-align: right;
   cursor: pointer;
 }
 
@@ -29,12 +38,11 @@
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* ----- Image Effects ----- */
+/* ----- Image (Effects) ----- */
 
 .card-image-container {
   border-top-right-radius: var(--radius);
   border-top-left-radius: var(--radius);
-  width: 285px;
   position: relative;
   overflow: hidden;
 }
@@ -55,7 +63,7 @@
 }
 
 .card-image-container .card-images img:nth-of-type(1) {
-  filter: grayscale(0.4) brightness(95%);
+  filter: grayscale(0.4) brightness(97%);
 }
 
 .card-image-container .card-images img:nth-of-type(2) {
@@ -67,23 +75,28 @@
   -ms-transition: var(--transition);
   transition: var(--transition);
 }
+
 .card-container:hover .card-images img:nth-of-type(2) {
   -webkit-clip-path: ellipse(150% 150% at 0 100%);
   clip-path: ellipse(150% 150% at 0 100%);
 }
 
-/* ----- Info Icon effects ----- */
+/* ----- Info Icon (effects) ----- */
 
 .info-icon-container {
-  background: #92879b;
+  background-color: var(--primary-color);
   width: 140px;
   height: 140px;
   position: absolute;
   top: -70px;
   right: -70px;
   border-radius: 0px 0px 200px 200px;
+  -moz-transition: all 0.5s, border-radius 2s, top 1s;
+  -o-transition: all 0.5s, border-radius 2s, top 1s;
+  -ms-transition: all 0.5s, border-radius 2s, top 1s;
   transition: all 0.5s, border-radius 2s, top 1s;
   overflow: hidden;
+  display: flex;
 }
 
 .info-icon-container:hover {
@@ -98,8 +111,10 @@
   position: absolute;
   right: 85px;
   top: 85px;
-  color: white;
   opacity: 1;
+  fill: var(--light-gray);
+  width: 28px;
+  height: 28px;
 }
 
 .info-icon-container:hover .info-icon {
@@ -108,26 +123,89 @@
   top: 15px;
 }
 
-.info-icon-container .info-icon:hover .info-icon-content {
+.info-icon-container:hover .info-icon-content {
   opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
   transform: scale(1);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0);
 }
-.info-icon-container .info-icon .info-icon-content {
+
+.info-icon-container .info-icon-content {
   padding: 5%;
   opacity: 0;
+  -webkit-transform: scale(0.5);
+  -moz-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  -ms-transform: scale(0.5);
   transform: scale(0.5);
+  -webkit-transform: translateY(-200%);
+  -moz-transform: translateY(-200%);
+  -o-transform: translateY(-200%);
+  -ms-transform: translateY(-200%);
   transform: translateY(-200%);
+  -webkit-transition: opacity 0.2s, transform 0.8s;
+  -moz-transition: opacity 0.2s, transform 0.8s;
+  -o-transition: opacity 0.2s, transform 0.8s;
+  -ms-transition: opacity 0.2s, transform 0.8s;
   transition: opacity 0.2s, transform 0.8s;
-}
-.info-icon-container .info-icon .info-icon-content div {
-  text-align: left;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: auto;
 }
 
-.info-icon-container .info-icon .info-icon-content div {
-  color: white;
+.info-icon-container .info-icon-content .rate,
+.info-icon-container .info-icon-content .count {
+  color: var(--light-gray);
 }
-.info-icon-container .info-icon .info-icon-content p {
-  font-size: 13px;
+
+.info-icon-container .info-icon-content .rate {
+  font-size: 2rem;
+  margin: 0 10px;
+}
+
+.info-icon-container .info-icon-content .count {
+  font-size: 1.5rem;
+}
+
+.info-icon-container .info-icon-content .discount {
+  direction: rtl;
+  margin-top: 10px;
+}
+
+/* ----- Card Footer ----- */
+
+.card-footer {
+  padding: 10% 10% 0;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+}
+
+.price-new {
+  margin: 0 3%;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.price-toman {
+  font-size: 0.9rem;
 }
