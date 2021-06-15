@@ -1,6 +1,7 @@
 :root {
   --primary-color: #9b97b5;
-  --secondary-color: #b5a897;
+  --secondary-color: #63adb6;
+  --secondary-dark-color: #4e7a9e;
   --red-color: #ef394e;
   --gray-light-color: #f7f7f7;
   --gray-dark-color: #acacac;
@@ -25,7 +26,7 @@
   -o-transition: var(--transition);
   -ms-transition: var(--transition);
   transition: var(--transition);
-  background-color: var(--light-gray);
+  background-color: var(--gray-light-color);
   text-align: right;
   cursor: pointer;
 }
@@ -99,6 +100,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .info-icon-container:hover {
@@ -142,6 +144,7 @@
 .info-icon-container .info-icon-content {
   padding: 5%;
   opacity: 0;
+  height: 32%;
   -webkit-transform: scale(0.5);
   -moz-transform: scale(0.5);
   -o-transform: scale(0.5);
@@ -159,7 +162,7 @@
   transition: opacity 0.2s, transform 0.8s;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -178,10 +181,15 @@
   font-size: 1.5rem;
 }
 
+.info-icon-container .info-icon-content .dead-emoji-icon {
+  width: 100px;
+  fill: var(--secondary-dark-color);
+}
+
 .info-icon-container .info-icon-content .discount {
   direction: rtl;
-  margin-top: 10px;
 }
+
 .info-icon-container .info-icon-content .discount .discount-percent {
   display: inline-block;
   font-size: 1.3rem;
@@ -191,7 +199,7 @@
   padding: 6px 6px;
   line-height: 1;
   background-color: var(--red-color);
-  margin-left: 2px;
+  margin-left: 8px;
 }
 
 /* ----- Card Footer ----- */
