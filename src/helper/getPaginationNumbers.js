@@ -1,7 +1,4 @@
-const getPaginationNumbers = (totalPages) => {
-  console.log("totalPages", totalPages);
-  const newArray = Array.from({ length: totalPages }, (_, i) => i + 1);
-  return newArray;
-};
+const getPaginationNumbers = (totalPages) =>
+  Array.from({ length: totalPages }, (_, i) => i + 1);
 
 export { getPaginationNumbers };

@@ -5,7 +5,7 @@ import { getDiscount } from "../../helper/getDiscount";
 import { getPaginationNumbers } from "../../helper/getPaginationNumbers";
 // Components
 import Card from "../card/card.compenent";
-import Pagination from "../pagination/pagination.components";
+import Pagination from "../pagination/pagination-container.component";
 // CSS
 import "./home-page.styles.css";
 
@@ -39,7 +39,7 @@ export default function HomePage() {
           />
         ))}
       </div>
-      <Pagination />
+      <Pagination paginationNumbers={getPaginationNumbers(totalPages)} />
     </div>
   );
 }
