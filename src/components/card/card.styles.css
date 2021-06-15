@@ -1,6 +1,7 @@
 :root {
-  --primary-color: #9a96b4;
-  --secondary-color: #b4a796;
+  --primary-color: #9b97b5;
+  --secondary-color: #b5a897;
+  --red-color: #ef394e;
   --light-gray: #f7f7f7;
   --dark-gray: #acacac;
   --radius: 20px;
@@ -97,6 +98,7 @@
   transition: all 0.5s, border-radius 2s, top 1s;
   overflow: hidden;
   display: flex;
+  justify-content: center;
 }
 
 .info-icon-container:hover {
@@ -157,10 +159,9 @@
   transition: opacity 0.2s, transform 0.8s;
   display: flex;
   justify-content: center;
+  align-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 70%;
-  margin: auto;
 }
 
 .info-icon-container .info-icon-content .rate,
@@ -180,6 +181,17 @@
 .info-icon-container .info-icon-content .discount {
   direction: rtl;
   margin-top: 10px;
+}
+.info-icon-container .info-icon-content .discount .discount-percent {
+  display: inline-block;
+  font-size: 1.3rem;
+  color: white;
+  border: 1px solid var(--red-color);
+  border-radius: 30%;
+  padding: 6px 6px;
+  line-height: 1;
+  background-color: var(--red-color);
+  margin-left: 2px;
 }
 
 /* ----- Card Footer ----- */
