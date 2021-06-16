@@ -1,7 +1,8 @@
-async function getPLP() {
+const getPLP = async (page) => {
   try {
+    console.log(1, page);
     const response = await fetch(
-      "https://cors-anywhere.herokuapp.com/https://www.digikala.com/front-end/search/?page=2&rows=25&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=سیب",
+      `https://www.digikala.com/front-end/search/?page=${page}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=سیب`,
       {
         headers: {
           token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
@@ -11,6 +12,7 @@ async function getPLP() {
     );
 
     const data = await response.json();
+    localStorage.setItem("data", JSON.stringify(data));
 
     return data;
   } catch (error) {
@@ -18,9 +20,9 @@ async function getPLP() {
       `There has been a problem with your fetch operation: ${error.message}`
     );
   }
-}
+};
 
-async function getPDP() {
+const getPDP = async () => {
   try {
     const response = await fetch(
       "https://www.digikala.com/front-end/product/{productId}",
@@ -38,6 +40,6 @@ async function getPDP() {
       `There has been a problem with your fetch operation: ${error.message}`
     );
   }
-}
+};
 
 export { getPLP, getPDP };
