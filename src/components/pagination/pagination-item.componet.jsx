@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import clsx from "clsx";
 // CSS
 import "./pagination-item.styles.css";
 
@@ -7,15 +8,15 @@ export default function PaginationItem({
   pageNumber,
   handlePaginationClick,
 }) {
+  console.log("me", currentPageNumber === pageNumber);
+
   return (
     <button
-      className="pagination-item"
+      className={clsx("pagination-item", {
+        "pagination-item-selected": currentPageNumber === pageNumber,
+      })}
       key={pageNumber}
       onClick={() => handlePaginationClick(pageNumber)}
-      style={{
-        backgroundColor:
-          currentPageNumber === pageNumber ? "#30c9e8" : "#9b97b5",
-      }}
     >
       {pageNumber}
     </button>

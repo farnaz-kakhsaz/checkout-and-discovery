@@ -1,6 +1,7 @@
 :root {
   --primary-color: #9b97b5;
   --primary-dark-color: #92879b;
+  --secondary-color: #a6cdde;
   --transition: all 0.5s ease;
 }
 
@@ -31,4 +32,8 @@
   -ms-transform: scale(0.9);
   transform: scale(0.9);
   box-shadow: 0px 4px 12px 4px rgb(0 0 0 / 30%);
+}
+
+.pagination-item-selected {
+  background-color: var(--secondary-color);
 }
