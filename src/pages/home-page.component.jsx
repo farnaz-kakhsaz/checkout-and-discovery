@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 // Functions
 import { getPLP } from "../services/handleResponse";
 import { getDiscount } from "../helper/getDiscount";
+import { getNumberFromString } from "../helper/getNumberFromString";
 import { getPaginationNumbers } from "../helper/getPaginationNumbers";
 // Components
 import Card from "../components/card/card.compenent";
 import Pagination from "../components/pagination/pagination-container.component";
-// Images
-import SpinnerIcon from "../assets/images/icon-spinner.gif";
+import Spinner from "../components/spinner/spinner.component";
 // CSS
 import "./home-page.styles.css";
 
 export default function HomePage() {
+  const history = useHistory();
+  const { pageNumberURL } = useParams();
   const [productList, setProductList] = useState([]);
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [currentPageNumber, setCurrentPageNumber] = useState(
+    getNumberFromString(pageNumberURL)
+  );
   const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  // const [pageNumber, setPageNumber] = useState(false);
-
-  const { pageNumber } = useParams();
-  console.log("pageNumber: ", pageNumber);
 
   useEffect(() => {
+    updateURL(currentPageNumber);
     setIsLoading(true);
     getPLP(currentPageNumber)
       .then((data) => {
@@ -31,20 +32,23 @@ export default function HomePage() {
         setIsLoading(false);
       })
       .catch((error) => setIsLoading(false));
-    // setProductList(JSON.parse(localStorage.getItem("data")));
   }, [currentPageNumber]);
 
   const handlePaginationClick = (newPageNumber) => {
     setCurrentPageNumber(newPageNumber);
   };
 
+  const updateURL = (pageNumber) => {
+    history.push(`/page=${pageNumber}`);
+  };
+
   console.log("productList: ", productList);
 
   return (
     <div className="home-page-container">
-      <div className="home-page-card-container">
-        {!isLoading ? (
-          <>
+      {!isLoading ? (
+        <>
+          <div className="home-page-card-container">
             {productList?.products?.map((item) => (
               <Card
                 key={item.id}
@@ -55,16 +59,16 @@ export default function HomePage() {
                 {...item}
               />
             ))}
-            <Pagination
-              currentPageNumber={currentPageNumber}
-              paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
-              handlePaginationClick={handlePaginationClick}
-            />
-          </>
-        ) : (
-          <img className="spinner" src={SpinnerIcon} alt="spinner" />
-        )}
-      </div>
+          </div>
+          <Pagination
+            currentPageNumber={currentPageNumber}
+            paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
+            handlePaginationClick={handlePaginationClick}
+          />
+        </>
+      ) : (
+        <Spinner />
+      )}
     </div>
   );
 }

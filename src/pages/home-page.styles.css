@@ -9,10 +9,3 @@
   max-width: 1500px;
   margin: 0 auto;
 }
-
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
