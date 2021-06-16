@@ -14,7 +14,7 @@ export default function PaginationItem({
       onClick={() => handlePaginationClick(pageNumber)}
       style={{
         backgroundColor:
-          currentPageNumber === pageNumber ? "#63adb6" : "#9b97b5",
+          currentPageNumber === pageNumber ? "#30c9e8" : "#9b97b5",
       }}
     >
       {pageNumber}

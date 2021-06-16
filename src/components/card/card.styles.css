@@ -1,6 +1,7 @@
 :root {
   --primary-color: #9b97b5;
-  --secondary-color: #63adb6;
+  --secondary-color: #30c9e8;
+  /* --secondary-color: #63adb6; */
   --secondary-dark-color: #4e7a9e;
   --red-color: #ef394e;
   --gray-light-color: #f7f7f7;
@@ -185,7 +186,7 @@
 
 .info-icon-container .info-icon-content .dead-emoji-icon {
   width: 100px;
-  fill: var(--secondary-dark-color);
+  fill: var(--red-color);
 }
 
 .info-icon-container .info-icon-content .discount {
