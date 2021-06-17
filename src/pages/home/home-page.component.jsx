@@ -1,52 +1,50 @@
-import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router";
 // Functions
-import { getPLP } from "../services/handleResponse";
-import { getDiscount } from "../helper/getDiscount";
-import { getNumberFromString } from "../helper/getNumberFromString";
-import { getPaginationNumbers } from "../helper/getPaginationNumbers";
+import { Context } from "../../context/context-provider";
+import { getDiscount } from "../../helper/getDiscount";
+import { getNumberFromString } from "../../helper/getNumberFromString";
+import { getPaginationNumbers } from "../../helper/getPaginationNumbers";
 // Components
-import Card from "../components/card/card.compenent";
-import Pagination from "../components/pagination/pagination-container.component";
-import Spinner from "../components/spinner/spinner.component";
+import Card from "../../components/card/card.compenent";
+import Pagination from "../../components/pagination/pagination-container.component";
+import Spinner from "../../components/spinner/spinner.component";
 // CSS
 import "./home-page.styles.css";
 
 export default function HomePage() {
-  const history = useHistory();
   const { pageNumberURL } = useParams();
+  const { value, setValue } = useContext(Context);
   const [productList, setProductList] = useState([]);
-  const [currentPageNumber, setCurrentPageNumber] = useState(
-    getNumberFromString(pageNumberURL)
-  );
+  const [currentPageNumber, setCurrentPageNumber] = useState();
+  // getNumberFromString(pageNumberURL)
   const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    updateURL(currentPageNumber);
-    setIsLoading(true);
-    getPLP(currentPageNumber)
+    console.log("Me", value);
+    console.log("Me", setValue);
+    setValue((prevValue) => ({ ...prevValue, isLoading: true }));
+    value
+      .getProductsListPage(getNumberFromString(pageNumberURL))
       .then((data) => {
         setProductList(data?.data);
         setTotalPagesNumbers(data?.data?.pager.total_pages);
-        setIsLoading(false);
+        setValue((prevValue) => ({ ...prevValue, isLoading: false }));
       })
-      .catch((error) => setIsLoading(false));
-  }, [currentPageNumber]);
+      .catch((error) =>
+        setValue((prevValue) => ({ ...prevValue, isLoading: false }))
+      );
+  }, [pageNumberURL]);
 
   const handlePaginationClick = (newPageNumber) => {
     setCurrentPageNumber(newPageNumber);
-  };
-
-  const updateURL = (pageNumber) => {
-    history.push(`/page=${pageNumber}`);
   };
 
   console.log("productList: ", productList);
 
   return (
     <div className="home-page-container">
-      {!isLoading ? (
+      {!value.isLoading ? (
         <>
           <div className="home-page-card-container">
             {productList?.products?.map((item) => (
@@ -61,7 +59,7 @@ export default function HomePage() {
             ))}
           </div>
           <Pagination
-            currentPageNumber={currentPageNumber}
+            currentPageNumber={value.currentPageNumber}
             paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
             handlePaginationClick={handlePaginationClick}
           />
