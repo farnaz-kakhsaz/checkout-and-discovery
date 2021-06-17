@@ -6,7 +6,7 @@ export default function Spinner() {
       class="spinner"
       src="https://cdn.lordicon.com/ymrqtsej.json"
       trigger="loop"
-      colors="primary:#30c9e8"
+      colors="primary:#a6cdde"
     />
   );
 }
