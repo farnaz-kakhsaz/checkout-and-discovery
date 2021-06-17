@@ -1,8 +1,7 @@
-const getPLP = async (page) => {
+const getProductsListPage = async (pageNumber) => {
   try {
-    console.log(1, page);
     const response = await fetch(
-      `https://www.digikala.com/front-end/search/?page=${page}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=سیب`,
+      `https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=سیب`,
       {
         headers: {
           token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
@@ -42,4 +41,4 @@ const getPDP = async () => {
   }
 };
 
-export { getPLP, getPDP };
+export { getProductsListPage, getPDP };
