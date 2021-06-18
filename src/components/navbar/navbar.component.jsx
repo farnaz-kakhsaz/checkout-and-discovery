@@ -21,9 +21,9 @@ export default function Navbar() {
         onClick={handleModalClick(isModalOpen)}
       >
         <Basket />
-        {Object.keys(value.selectedCardsObj).length !== 0 && (
+        {Object.keys(value.selectedCardsList).length !== 0 && (
           <div className="added-to-cart-product-number">
-            {Object.keys(value.selectedCardsObj).length}
+            {Object.keys(value.selectedCardsList).length}
           </div>
         )}
         {isModalOpen && <ModalContainer />}

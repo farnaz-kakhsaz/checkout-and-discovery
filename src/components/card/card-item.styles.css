@@ -225,10 +225,6 @@
 
 /* Left Section */
 
-.card-footer-container-left {
-  /* float: left; */
-}
-
 .shopping-cart-icon-container {
   flex-basis: 30%;
   display: flex;

@@ -1,7 +1,7 @@
 const getProductsListPage = async (pageNumber) => {
   try {
     const response = await fetch(
-      `https://cors-anywhere.herokuapp.com/https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=سیب`,
+      `https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=سیب`,
       {
         headers: {
           token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",

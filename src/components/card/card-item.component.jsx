@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 
 import { Context } from "../../context/context-provider";
-import { removeItemFromObj } from "../../helper/removeItemFromObj";
+import { removeObjectFromArray } from "../../helper/removeObjectFromArray";
+import { findObjectByIdInArray } from "../../helper/findObjectByIdInArray";
 // Images
 import { ReactComponent as InfoIcon } from "../../assets/images/icon-info.svg";
 import { ReactComponent as StarIcon } from "../../assets/images/icon-star.svg";
@@ -25,26 +26,27 @@ export default function CardItem({
   const { value, setValue } = useContext(Context);
 
   const handleAddToCartClick =
-    (id, images, title, rating, price, discount) => (event) => {
-      const isIdDuplicate = value.selectedCardsObj[id];
+    (selectedCardsList, id, images, title, rating, price, discount) =>
+    (event) => {
+      const isIdDuplicate = findObjectByIdInArray(selectedCardsList, id) === id;
 
       if (!isIdDuplicate) {
         setValue((prevValue) => ({
           ...prevValue,
-          selectedCardsObj: {
-            ...prevValue.selectedCardsObj,
-            [id]: { id, images, title, rating, price, discount },
-          },
+          selectedCardsList: [
+            ...prevValue.selectedCardsList,
+            { id, images, title, rating, price, discount },
+          ],
         }));
       }
     };
 
-  const handleRemoveFromCartClick = (selectedCardsObj, id) => (event) => {
-    const newSelectedCardsObj = removeItemFromObj(selectedCardsObj, id);
+  const handleRemoveFromCartClick = (selectedCardsList, id) => (event) => {
+    const newselectedCardsList = removeObjectFromArray(selectedCardsList, id);
 
     setValue((prevValue) => ({
       ...prevValue,
-      selectedCardsObj: { ...newSelectedCardsObj },
+      selectedCardsList: [...newselectedCardsList],
     }));
   };
 
@@ -80,7 +82,8 @@ export default function CardItem({
       </div>
       <div
         className={clsx("card-footer-container", {
-          "card-footer-selected": value.selectedCardsObj[id],
+          "card-footer-selected":
+            findObjectByIdInArray(value.selectedCardsList, id) === id,
         })}
       >
         <div className="card-footer-container-left">
@@ -97,6 +100,7 @@ export default function CardItem({
           <button
             className="shopping-cart-icon-container"
             onClick={handleAddToCartClick(
+              value.selectedCardsList,
               id,
               images,
               title,
@@ -120,7 +124,7 @@ export default function CardItem({
           </div>
           <button
             className="clear-icon-container"
-            onClick={handleRemoveFromCartClick(value.selectedCardsObj, id)}
+            onClick={handleRemoveFromCartClick(value.selectedCardsList, id)}
           >
             <ClearIcon className="clear-icon" />
           </button>

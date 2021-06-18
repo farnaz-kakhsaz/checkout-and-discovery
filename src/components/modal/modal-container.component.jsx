@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import PropTypes from "prop-types";
 // Components
 import { Context } from "../../context/context-provider";
 import ModalItem from "./modal-item.component";
@@ -15,9 +14,9 @@ export default function Modal() {
 
   return (
     <div className="modal-container" onClick={handleClick}>
-      <ModalItem />
+      {value.selectedCardsList.map((selectedCardInfo) => (
+        <ModalItem selectedCardInfo={selectedCardInfo} />
+      ))}
     </div>
   );
 }
-
-Modal.propTypes = {};
