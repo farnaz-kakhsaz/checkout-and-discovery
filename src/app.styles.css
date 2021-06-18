@@ -80,7 +80,8 @@
   --red-dark-color: #9b2847;
   --gray-light-color: #f1f1f1;
   --gray-dark-color: #acacac;
-  --radius: 20px;
+  --border-radius: 20px;
+  --border-radius-red-box: 12px;
   --transition: all 0.5s ease;
 }
 
