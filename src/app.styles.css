@@ -70,7 +70,23 @@
   font-display: swap;
 }
 
+:root {
+  --background-color: #f1f2f6;
+  --primary-color: #9b97b5;
+  --primary-dark-color: #3a596ed6;
+  --secondary-color: #a6cdde;
+  --secondary-dark-color: #4e7a9e;
+  --red-color: #bc3b59;
+  --red-dark-color: #9b2847;
+  --gray-light-color: #f1f1f1;
+  --gray-dark-color: #acacac;
+  --radius: 20px;
+  --transition: all 0.5s ease;
+}
+
 body {
   font-family: "Vazir", sans-serif;
   color: #515151;
+  margin: 0;
+  background-color: var(--background-color);
 }
