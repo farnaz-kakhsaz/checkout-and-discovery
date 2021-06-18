@@ -6,14 +6,14 @@ import "./navbar.styles.css";
 
 export default function Navbar() {
   const { value, setValue } = useContext(Context);
-  console.log(value.selectedCardsList.length);
+  console.log(value.selectedCardsObj.length);
   return (
     <div className="navbar">
       <div className="basket-and-nember-container">
         <Basket />
-        {value.selectedCardsList.length !== 0 && (
+        {Object.keys(value.selectedCardsObj).length !== 0 && (
           <div className="added-to-cart-product-number">
-            {value.selectedCardsList.length}
+            {Object.keys(value.selectedCardsObj).length}
           </div>
         )}
       </div>

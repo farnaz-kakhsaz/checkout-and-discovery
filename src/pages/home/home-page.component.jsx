@@ -50,7 +50,6 @@ export default function HomePage() {
       {!value.isLoading ? (
         <>
           <CardContainer productPageList={productPageList} />
-
           <Pagination
             currentPageNumber={currentPageNumber}
             paginationNumbers={getPaginationNumbers(totalPagesNumbers)}

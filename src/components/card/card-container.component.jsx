@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+// Component
 import CardItem from "./card-item.component";
 import { getDiscount } from "../../helper/getDiscount";
 // CSS
@@ -19,3 +21,7 @@ export default function CardContainer({ productPageList }) {
     </div>
   );
 }
+
+CardContainer.propTypes = {
+  productPageList: PropTypes.object.isRequired,
+};

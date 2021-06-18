@@ -6,7 +6,7 @@ const Context = createContext();
 
 const initialState = {
   isLoading: true,
-  selectedCardsList: [],
+  selectedCardsObj: {},
   addedProductsToCartList: [],
   getProductsListPage: (pageNumber) => getProductsListPage(pageNumber),
 };
