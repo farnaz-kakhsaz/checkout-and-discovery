@@ -1,16 +1,9 @@
-:root {
-  --primary-color: #9b97b5;
-  --primary-dark-color: #3a596ed6;
-  --secondary-color: #a6cdde;
-  --transition: all 0.5s ease;
-}
-
 .pagination-item {
   cursor: pointer;
   background-color: var(--primary-color);
   color: white;
   margin: 10px;
-  width: 42px;
+  min-width: 42px;
   height: 34px;
   border: 0;
   border-radius: 8px;
@@ -20,18 +13,16 @@
   -o-transition: var(--transition);
   -ms-transition: var(--transition);
   transition: var(--transition);
-  box-shadow: 0px 6px 10px 2px rgb(0 0 0 / 30%);
+  box-shadow: 0px 6px 8px rgb(0 0 0 / 20%);
 }
 
 .pagination-item:hover {
   background-color: var(--primary-dark-color);
-  box-shadow: 0px 6px 15px rgb(0 0 0 / 15%);
   -webkit-transform: scale(0.9);
   -moz-transform: scale(0.9);
   -o-transform: scale(0.9);
   -ms-transform: scale(0.9);
   transform: scale(0.9);
-  box-shadow: 0px 4px 12px 4px rgb(0 0 0 / 30%);
 }
 
 .pagination-item-selected {
