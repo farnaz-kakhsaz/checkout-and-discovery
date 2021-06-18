@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 // Functions
 import { Context } from "../../context/context-provider";
 import { getDiscount } from "../../helper/getDiscount";
@@ -13,41 +13,45 @@ import Spinner from "../../components/spinner/spinner.component";
 import "./home-page.styles.css";
 
 export default function HomePage() {
-  const { pageNumberURL } = useParams();
+  const history = useHistory();
+  const { urlPageNumber } = useParams();
   const { value, setValue } = useContext(Context);
-  const [productList, setProductList] = useState([]);
-  const [currentPageNumber, setCurrentPageNumber] = useState();
-  // getNumberFromString(pageNumberURL)
+
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [productPageList, setProductPageList] = useState([]);
   const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
 
   useEffect(() => {
-    console.log("Me", value);
-    console.log("Me", setValue);
+    const getUrlPageNumber = getNumberFromString(urlPageNumber);
+    setCurrentPageNumber(getUrlPageNumber);
+
     setValue((prevValue) => ({ ...prevValue, isLoading: true }));
+
     value
-      .getProductsListPage(getNumberFromString(pageNumberURL))
+      .getProductsListPage(currentPageNumber)
       .then((data) => {
-        setProductList(data?.data);
+        setProductPageList(data?.data);
         setTotalPagesNumbers(data?.data?.pager.total_pages);
         setValue((prevValue) => ({ ...prevValue, isLoading: false }));
       })
-      .catch((error) =>
-        setValue((prevValue) => ({ ...prevValue, isLoading: false }))
-      );
-  }, [pageNumberURL]);
+      .catch((error) => {
+        setValue((prevValue) => ({ ...prevValue, isLoading: false }));
+      });
+  }, [currentPageNumber]);
 
   const handlePaginationClick = (newPageNumber) => {
     setCurrentPageNumber(newPageNumber);
+    history.push(`/page=${newPageNumber}`);
   };
 
-  console.log("productList: ", productList);
+  console.log("productList: ", productPageList);
 
   return (
     <div className="home-page-container">
       {!value.isLoading ? (
         <>
           <div className="home-page-card-container">
-            {productList?.products?.map((item) => (
+            {productPageList?.products?.map((item) => (
               <Card
                 key={item.id}
                 discount={getDiscount(
@@ -59,7 +63,7 @@ export default function HomePage() {
             ))}
           </div>
           <Pagination
-            currentPageNumber={value.currentPageNumber}
+            currentPageNumber={currentPageNumber}
             paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
             handlePaginationClick={handlePaginationClick}
           />
