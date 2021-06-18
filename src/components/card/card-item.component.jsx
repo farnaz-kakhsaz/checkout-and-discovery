@@ -11,7 +11,7 @@ import { ReactComponent as ShoppingCartIcon } from "../../assets/images/icon-sho
 import { ReactComponent as DoneIcon } from "../../assets/images/icon-done.svg";
 import { ReactComponent as ClearIcon } from "../../assets/images/icon-clear.svg";
 // CSS
-import "./card.styles.css";
+import "./card-item.styles.css";
 
 export default function Card({ id, images, title, rating, price, discount }) {
   const { value, setValue } = useContext(Context);
@@ -40,7 +40,7 @@ export default function Card({ id, images, title, rating, price, discount }) {
   };
 
   return (
-    <div className="card-container" key={id}>
+    <div className="card-item-container" key={id}>
       <div className="card-image-container">
         <div className="card-images">
           <img src={images.main} alt={title}></img>

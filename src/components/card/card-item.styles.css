@@ -1,4 +1,4 @@
-.card-container {
+.card-item-container {
   display: flex;
   flex-direction: column;
   margin: 5px;
@@ -23,7 +23,7 @@
   overflow: hidden;
 }
 
-.card-container:hover {
+.card-item-container:hover {
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -o-transform: scale(1);
@@ -70,7 +70,7 @@
   transition: var(--transition);
 }
 
-.card-container:hover .card-images img:nth-of-type(2) {
+.card-item-container:hover .card-images img:nth-of-type(2) {
   -webkit-clip-path: ellipse(150% 150% at 0 100%);
   clip-path: ellipse(150% 150% at 0 100%);
 }

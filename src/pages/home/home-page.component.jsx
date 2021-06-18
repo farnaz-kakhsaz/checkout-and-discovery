@@ -2,11 +2,10 @@ import { useEffect, useState, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
 // Functions
 import { Context } from "../../context/context-provider";
-import { getDiscount } from "../../helper/getDiscount";
 import { getNumberFromString } from "../../helper/getNumberFromString";
 import { getPaginationNumbers } from "../../helper/getPaginationNumbers";
 // Components
-import Card from "../../components/card/card.compenent";
+import CardContainer from "../../components/card/card-container.component";
 import Pagination from "../../components/pagination/pagination-container.component";
 import Spinner from "../../components/spinner/spinner.component";
 // CSS
@@ -50,18 +49,8 @@ export default function HomePage() {
     <div className="home-page-container">
       {!value.isLoading ? (
         <>
-          <div className="home-page-card-container">
-            {productPageList?.products?.map((item) => (
-              <Card
-                key={item.id}
-                discount={getDiscount(
-                  item?.price.selling_price,
-                  item?.price.rrp_price
-                )}
-                {...item}
-              />
-            ))}
-          </div>
+          <CardContainer productPageList={productPageList} />
+
           <Pagination
             currentPageNumber={currentPageNumber}
             paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
