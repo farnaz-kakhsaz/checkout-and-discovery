@@ -1,31 +1,24 @@
-import { createContext, useEffect, useState } from "react";
-import { useHistory } from "react-router";
-
+import { createContext, useEffect, useState, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import { getProductsListPage } from "../services/handleResponse";
 
 const Context = createContext();
 
 const initialState = {
-  currentPageNumber: 1,
   isLoading: true,
-  cartProductsList: [],
-  productsListPage: [],
+  selectedCardsList: [],
+  addedProductsToCartList: [],
   getProductsListPage: (pageNumber) => getProductsListPage(pageNumber),
 };
 
 const ContextProvider = ({ children }) => {
   const [value, setValue] = useState(initialState);
-  const history = useHistory();
+  const providerValue = useMemo(() => ({ value, setValue }), [value, setValue]);
 
-  useEffect(() => {
-    // Update URL
-    console.log("yeds");
-    history.push(`/page=${value.currentPageNumber}`);
-  }, [history, value]);
-  console.log("procider section");
-  return (
-    <Context.Provider value={{ value, setValue }}>{children}</Context.Provider>
-  );
+  const history = useHistory();
+  useEffect(() => history.push(`/page=1`), []);
+
+  return <Context.Provider value={providerValue}>{children}</Context.Provider>;
 };
 
 export { Context };

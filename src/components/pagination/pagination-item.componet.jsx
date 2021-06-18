@@ -8,8 +8,6 @@ export default function PaginationItem({
   pageNumber,
   handlePaginationClick,
 }) {
-  console.log("me", currentPageNumber === pageNumber);
-
   return (
     <button
       className={clsx("pagination-item", {

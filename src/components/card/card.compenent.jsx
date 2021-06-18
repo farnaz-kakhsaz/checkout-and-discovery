@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
+import { Context } from "../../context/context-provider";
+import { removeItemFromArray } from "../../helper/removeItemFromArray";
 // Images
 import { ReactComponent as InfoIcon } from "../../assets/images/icon-info.svg";
 import { ReactComponent as StarIcon } from "../../assets/images/icon-star.svg";
@@ -12,10 +14,29 @@ import { ReactComponent as ClearIcon } from "../../assets/images/icon-clear.svg"
 import "./card.styles.css";
 
 export default function Card({ id, images, title, rating, price, discount }) {
-  const [clicked, setClicked] = useState(false);
+  const { value, setValue } = useContext(Context);
 
-  const handleAddToCartClick = () => {
-    setClicked(!clicked);
+  const handleAddToCartClick = (id) => (event) => {
+    const isIdDuplicate = value.selectedCardsList.find((item) => item === id);
+
+    if (!isIdDuplicate) {
+      setValue((prevValue) => ({
+        ...prevValue,
+        selectedCardsList: [...prevValue.selectedCardsList, id],
+      }));
+    }
+  };
+
+  const handleRemoveFromCartClick = (id) => (event) => {
+    const newSelectedCardsList = removeItemFromArray(
+      value.selectedCardsList,
+      id
+    );
+
+    setValue((prevValue) => ({
+      ...prevValue,
+      selectedCardsList: [...newSelectedCardsList],
+    }));
   };
 
   return (
@@ -50,7 +71,7 @@ export default function Card({ id, images, title, rating, price, discount }) {
       </div>
       <div
         className={clsx("card-footer-container", {
-          "card-footer-clicked": clicked,
+          "card-footer-selected": value.selectedCardsList.includes(id),
         })}
       >
         <div className="card-footer-container-left">
@@ -66,7 +87,7 @@ export default function Card({ id, images, title, rating, price, discount }) {
           </div>
           <button
             className="shopping-cart-icon-container"
-            onClick={handleAddToCartClick}
+            onClick={handleAddToCartClick(id)}
           >
             <ShoppingCartIcon className="shopping-cart-icon" />
           </button>
@@ -83,7 +104,7 @@ export default function Card({ id, images, title, rating, price, discount }) {
           </div>
           <button
             className="clear-icon-container"
-            onClick={handleAddToCartClick}
+            onClick={handleRemoveFromCartClick(id)}
           >
             <ClearIcon className="clear-icon" />
           </button>

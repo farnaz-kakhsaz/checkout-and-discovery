@@ -1,16 +1,3 @@
-:root {
-  --primary-color: #9b97b5;
-  --primary-dark-color: #3a596ed6;
-  --secondary-color: #a6cdde;
-  --secondary-dark-color: #4e7a9e;
-  --red-color: #bc3b59;
-  --red-dark-color: #9b2847;
-  --gray-light-color: #f1f1f1;
-  --gray-dark-color: #acacac;
-  --radius: 20px;
-  --transition: all 0.5s ease;
-}
-
 .card-container {
   display: flex;
   flex-direction: column;
@@ -229,7 +216,7 @@
   width: 100%;
 }
 
-.card-footer-clicked {
+.card-footer-selected {
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
@@ -265,6 +252,10 @@
 }
 
 .shopping-cart-icon-container:hover .shopping-cart-icon {
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  -ms-transform: translateY(5px);
   transform: translateY(5px);
   fill: var(--primary-dark-color);
 }
