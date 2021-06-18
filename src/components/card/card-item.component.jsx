@@ -24,22 +24,23 @@ export default function CardItem({
 }) {
   const { value, setValue } = useContext(Context);
 
-  const handleAddToCartClick = (id, images, price) => (event) => {
-    const isIdDuplicate = value.selectedCardsObj[id];
+  const handleAddToCartClick =
+    (id, images, title, rating, price, discount) => (event) => {
+      const isIdDuplicate = value.selectedCardsObj[id];
 
-    if (!isIdDuplicate) {
-      setValue((prevValue) => ({
-        ...prevValue,
-        selectedCardsObj: {
-          ...prevValue.selectedCardsObj,
-          [id]: { id, images, price },
-        },
-      }));
-    }
-  };
+      if (!isIdDuplicate) {
+        setValue((prevValue) => ({
+          ...prevValue,
+          selectedCardsObj: {
+            ...prevValue.selectedCardsObj,
+            [id]: { id, images, title, rating, price, discount },
+          },
+        }));
+      }
+    };
 
-  const handleRemoveFromCartClick = (id) => (event) => {
-    const newSelectedCardsObj = removeItemFromObj(value.selectedCardsObj, id);
+  const handleRemoveFromCartClick = (selectedCardsObj, id) => (event) => {
+    const newSelectedCardsObj = removeItemFromObj(selectedCardsObj, id);
 
     setValue((prevValue) => ({
       ...prevValue,
@@ -95,7 +96,14 @@ export default function CardItem({
           </div>
           <button
             className="shopping-cart-icon-container"
-            onClick={handleAddToCartClick(id, images, price)}
+            onClick={handleAddToCartClick(
+              id,
+              images,
+              title,
+              rating,
+              price,
+              discount
+            )}
           >
             <ShoppingCartIcon className="shopping-cart-icon" />
           </button>
@@ -112,7 +120,7 @@ export default function CardItem({
           </div>
           <button
             className="clear-icon-container"
-            onClick={handleRemoveFromCartClick(id)}
+            onClick={handleRemoveFromCartClick(value.selectedCardsObj, id)}
           >
             <ClearIcon className="clear-icon" />
           </button>
