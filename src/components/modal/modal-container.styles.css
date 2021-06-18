@@ -1,0 +1,10 @@
+.modal-container {
+  position: absolute;
+  top: 102%;
+  left: 10%;
+  width: 500px;
+  height: 400px;
+  background-color: var(--gray-light-color);
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--border-radius);
+}
