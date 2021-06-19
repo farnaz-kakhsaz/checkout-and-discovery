@@ -21,10 +21,10 @@ const getProductsListPage = async (pageNumber) => {
   }
 };
 
-const getPDP = async () => {
+const getPDP = async (productId) => {
   try {
     const response = await fetch(
-      "https://www.digikala.com/front-end/product/{productId}",
+      `https://www.digikala.com/front-end/product/${productId}`,
       {
         headers: {
           token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
