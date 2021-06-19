@@ -19,6 +19,7 @@ export default function ModalContainer() {
   }, [isModalOpen]);
 
   const handleRemoveFromCartClick = (id) => (event) => {
+    event.stopPropagation();
     const newselectedCardsList = removeObjectFromArray(
       value.selectedCardsList,
       id
@@ -28,6 +29,11 @@ export default function ModalContainer() {
       ...prevValue,
       selectedCardsList: [...newselectedCardsList],
     }));
+
+    localStorage.setItem(
+      "selectedCardsList",
+      JSON.stringify([...newselectedCardsList])
+    );
   };
 
   const handleCloseModal = () => {
