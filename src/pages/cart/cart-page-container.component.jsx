@@ -22,6 +22,11 @@ export default function CartPageContainer() {
       ...prevValue,
       selectedCardsList: [...newselectedCardsList],
     }));
+
+    localStorage.setItem(
+      "selectedCardsList",
+      JSON.stringify([...newselectedCardsList])
+    );
   };
 
   return (
