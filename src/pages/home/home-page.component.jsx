@@ -43,8 +43,6 @@ export default function HomePage() {
     history.push(`/page=${newPageNumber}`);
   };
 
-  console.log("productList: ", productPageList);
-
   return (
     <div className="home-page-container">
       {!value.isLoading ? (

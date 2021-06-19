@@ -72,6 +72,7 @@
 
 :root {
   --background-color: #f1f2f6;
+  --text-color: #515151;
   --primary-color: #9b97b5;
   --primary-dark-color: #3a596ed6;
   --secondary-color: #a6cdde;
@@ -80,6 +81,7 @@
   --red-dark-color: #9b2847;
   --gray-light-color: #f1f1f1;
   --gray-dark-color: #acacac;
+  --background-hover-btn: #acacac6e;
   --border-radius: 20px;
   --border-radius-red-box: 12px;
   --transition: all 0.5s ease;
@@ -88,7 +90,11 @@
 
 body {
   font-family: "Vazir", sans-serif;
-  color: #515151;
+  color: var(--text-color);
   margin: 0;
   background-color: var(--background-color);
+}
+
+a {
+  text-decoration: inherit;
 }
