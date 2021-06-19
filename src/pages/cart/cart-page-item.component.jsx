@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 // Images
 import { ReactComponent as DeleteIcon } from "../../assets/images/icon-delete.svg";
 // CSS
-import "./modal-item.styles.css";
+import "./cart-page-item.styles.css";
 
-export default function ModalItem({
+export default function CartPageItem({
   id,
   images,
   title,
@@ -14,20 +14,20 @@ export default function ModalItem({
   handleRemoveFromCartClick,
 }) {
   return (
-    <div className="modal-item">
+    <div className="cart-page-item">
       <div
-        className="modal-item-delete-icon-container"
+        className="cart-page-item-delete-icon-container"
         onClick={handleRemoveFromCartClick(id)}
       >
-        <DeleteIcon className="modal-item-delete-icon" />
+        <DeleteIcon className="cart-page-item-delete-icon" />
       </div>
-      <h5 className="modal-item-title">{title}</h5>
-      <img className="modal-item-image" src={images.main} alt={title} />
+      <h5 className="cart-page-item-title">{title}</h5>
+      <img className="cart-page-item-image" src={images.main} alt={title} />
     </div>
   );
 }
 
-ModalItem.propTypes = {
+CartPageItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   images: PropTypes.object.isRequired,

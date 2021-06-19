@@ -4,7 +4,7 @@ import Navbar from "./components/navbar/navbar.component";
 import ContextProvider from "./context/context-provider";
 import HomePage from "./pages/home/home-page.component";
 import DetailsPage from "./pages/details/details-page.component";
-import CartPage from "./pages/cart/cart-page.component";
+import CartPage from "./pages/cart/cart-page-container.component";
 // CSS
 import "./app.styles.css";
 
