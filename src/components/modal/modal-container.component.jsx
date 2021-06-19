@@ -25,6 +25,8 @@ export default function ModalContainer() {
       id
     );
 
+    if (newselectedCardsList.length === 0) handleCloseModal();
+
     setValue((prevValue) => ({
       ...prevValue,
       selectedCardsList: [...newselectedCardsList],
