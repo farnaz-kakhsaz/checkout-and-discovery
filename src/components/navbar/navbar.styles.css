@@ -12,14 +12,16 @@
 
 .basket-and-modal-container {
   position: relative;
-  width: fit-content;
-  margin-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 15px;
 }
 
 .added-to-cart-product-number {
   position: absolute;
   bottom: 0;
-  right: 1%;
+  left: 58px;
   background-color: var(--red-color);
   color: var(--gray-light-color);
   border-radius: var(--border-radius-red-box);

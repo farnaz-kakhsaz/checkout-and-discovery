@@ -1,5 +1,4 @@
-import { createContext, useEffect, useState, useMemo } from "react";
-import { useHistory } from "react-router-dom";
+import { createContext, useState, useMemo } from "react";
 import { getProductsListPage } from "../services/handleResponse";
 
 const Context = createContext();
@@ -15,9 +14,6 @@ const initialState = {
 const ContextProvider = ({ children }) => {
   const [value, setValue] = useState(initialState);
   const providerValue = useMemo(() => ({ value, setValue }), [value, setValue]);
-
-  const history = useHistory();
-  useEffect(() => history.push(`/page=1`), []);
 
   return <Context.Provider value={providerValue}>{children}</Context.Provider>;
 };

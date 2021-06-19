@@ -7,7 +7,7 @@ import { getPaginationNumbers } from "../../helper/getPaginationNumbers";
 // Components
 import CardContainer from "../../components/card/card-container.component";
 import Pagination from "../../components/pagination/pagination-container.component";
-import Spinner from "../../components/spinner/spinner.component";
+import SpinnerIcon from "../../components/spinner-icon/spinner-icon.component";
 // CSS
 import "./home-page.styles.css";
 
@@ -17,8 +17,10 @@ export default function HomePage() {
   const { value, setValue } = useContext(Context);
 
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
-  const [productPageList, setProductPageList] = useState([]);
+  const [productPageList, setProductPageList] = useState({});
   const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
+
+  useEffect(() => history.push(`/page=1`), []);
 
   useEffect(() => {
     const getUrlPageNumber = getNumberFromString(urlPageNumber);
@@ -27,7 +29,7 @@ export default function HomePage() {
     setValue((prevValue) => ({ ...prevValue, isLoading: true }));
 
     value
-      .getProductsListPage(currentPageNumber)
+      .getProductsListPage(currentPageNumber || 1)
       .then((data) => {
         setProductPageList(data?.data);
         setTotalPagesNumbers(data?.data?.pager.total_pages);
@@ -55,7 +57,7 @@ export default function HomePage() {
           />
         </>
       ) : (
-        <Spinner />
+        <SpinnerIcon />
       )}
     </div>
   );
