@@ -19,13 +19,14 @@
 2. You can get the product (if you have its id) with the URL on the details page.
 3. Attention to details on the home page and modal cart (cards, hover effects, icons, etc.)
 4. Ability to remove products from both modal cart and cart page.
-5. All searches are with API call
+5. All searches are with API call.
 6. Calculate discount (on cards info icon) and total amount on cart modal and cart page.
 7. Make the app into PWA (progressive web application)
 8. Deploy app: [checkout-and-discovery.vercel.app](https://checkout-and-discovery.vercel.app/)
 
 > Funny tips: With adding this URL **https://cors-anywhere.herokuapp.com** in front of any URL API call there is no need for any additional extension. You need to first request temporary access to the demo server from here:
 > https://cors-anywhere.herokuapp.com/corsdemo.
+> 
 > But be cautious, this is only for development purposes and has limited requests.
 
 ---
