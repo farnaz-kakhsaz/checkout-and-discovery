@@ -12,7 +12,7 @@ import "./modal-container.styles.css";
 
 export default function ModalContainer() {
   const { value, setValue } = useContext(Context);
-  const [isModalOpen, setIsModalOpern] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
     setValue((prevValue) => ({ ...prevValue, isModalOpen: isModalOpen }));
@@ -20,29 +20,30 @@ export default function ModalContainer() {
 
   const handleRemoveFromCartClick = (id) => (event) => {
     event.stopPropagation();
-    const newselectedCardsList = removeObjectFromArray(
+    const newSelectedCardsList = removeObjectFromArray(
       value.selectedCardsList,
       id
     );
 
-    if (newselectedCardsList.length === 0) handleCloseModal();
+    if (newSelectedCardsList.length === 0) handleCloseModal();
 
     setValue((prevValue) => ({
       ...prevValue,
-      selectedCardsList: [...newselectedCardsList],
+      selectedCardsList: [...newSelectedCardsList],
     }));
 
     localStorage.setItem(
       "selectedCardsList",
-      JSON.stringify([...newselectedCardsList])
+      JSON.stringify([...newSelectedCardsList])
     );
   };
 
   const handleCloseModal = () => {
-    setIsModalOpern(false);
+    setIsModalOpen(false);
   };
 
-  const innerRef = useOuterClick((ev) => setIsModalOpern(false));
+  // Close modal when clicking outside it
+  const innerRef = useOuterClick((event) => setIsModalOpen(false));
 
   return (
     <div className="modal-container" ref={innerRef}>

@@ -13,19 +13,19 @@ export default function CartPageContainer() {
   const { value, setValue } = useContext(Context);
 
   const handleRemoveFromCartClick = (id) => (event) => {
-    const newselectedCardsList = removeObjectFromArray(
+    const newSelectedCardsList = removeObjectFromArray(
       value.selectedCardsList,
       id
     );
 
     setValue((prevValue) => ({
       ...prevValue,
-      selectedCardsList: [...newselectedCardsList],
+      selectedCardsList: [...newSelectedCardsList],
     }));
 
     localStorage.setItem(
       "selectedCardsList",
-      JSON.stringify([...newselectedCardsList])
+      JSON.stringify([...newSelectedCardsList])
     );
   };
 

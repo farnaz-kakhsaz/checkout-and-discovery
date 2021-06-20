@@ -52,16 +52,16 @@ export default function CardItem({
 
   const handleRemoveFromCartClick = (selectedCardsList, id) => (event) => {
     event.preventDefault();
-    const newselectedCardsList = removeObjectFromArray(selectedCardsList, id);
+    const newSelectedCardsList = removeObjectFromArray(selectedCardsList, id);
 
     setValue((prevValue) => ({
       ...prevValue,
-      selectedCardsList: [...newselectedCardsList],
+      selectedCardsList: [...newSelectedCardsList],
     }));
 
     localStorage.setItem(
       "selectedCardsList",
-      JSON.stringify([...newselectedCardsList])
+      JSON.stringify([...newSelectedCardsList])
     );
   };
 
