@@ -6,6 +6,7 @@ const Context = createContext();
 const initialState = {
   isLoading: true,
   isModalOpen: false,
+  currentPageNumber: 1,
   selectedCardsList:
     JSON.parse(localStorage.getItem("selectedCardsList")) || [],
   addedProductsToCartList: [],

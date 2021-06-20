@@ -13,37 +13,43 @@ import "./home-page.styles.css";
 
 export default function HomePage() {
   const history = useHistory();
+  const { value, setValue } = useContext(Context);
   const { urlPageNumber } = useParams();
   const getUrlPageNumber = getNumberFromString(urlPageNumber);
-  const { value, setValue } = useContext(Context);
-
-  const [currentPageNumber, setCurrentPageNumber] = useState(
-    getUrlPageNumber || 1
-  );
   const [productPageList, setProductPageList] = useState({});
   const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
 
   useEffect(() => {
     if (!getUrlPageNumber) history.push(`/page=1`);
+    setValue((prevValue) => ({
+      ...prevValue,
+      currentPageNumber: getUrlPageNumber || 1,
+    }));
   }, []);
 
   useEffect(() => {
     setValue((prevValue) => ({ ...prevValue, isLoading: true }));
-
     value
       .getProductsListPage(getUrlPageNumber || 1)
       .then((data) => {
         setProductPageList(data?.data);
         setTotalPagesNumbers(data?.data?.pager.total_pages);
-        setValue((prevValue) => ({ ...prevValue, isLoading: false }));
+        setValue((prevValue) => ({
+          ...prevValue,
+          isLoading: false,
+        }));
       })
       .catch((error) => {
         setValue((prevValue) => ({ ...prevValue, isLoading: false }));
       });
-  }, [currentPageNumber]);
+  }, [value.currentPageNumber]);
 
   const handlePaginationClick = (newPageNumber) => {
-    setCurrentPageNumber(newPageNumber);
+    setValue((prevValue) => ({
+      ...prevValue,
+      currentPageNumber: newPageNumber,
+    }));
+
     history.push(`/page=${newPageNumber}`);
   };
 
@@ -53,7 +59,7 @@ export default function HomePage() {
         <>
           <CardContainer productPageList={productPageList} />
           <Pagination
-            currentPageNumber={currentPageNumber}
+            currentPageNumber={value.currentPageNumber}
             paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
             handlePaginationClick={handlePaginationClick}
           />
