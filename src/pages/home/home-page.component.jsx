@@ -14,22 +14,24 @@ import "./home-page.styles.css";
 export default function HomePage() {
   const history = useHistory();
   const { urlPageNumber } = useParams();
+  const getUrlPageNumber = getNumberFromString(urlPageNumber);
   const { value, setValue } = useContext(Context);
 
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [currentPageNumber, setCurrentPageNumber] = useState(
+    getUrlPageNumber || 1
+  );
   const [productPageList, setProductPageList] = useState({});
   const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
 
-  useEffect(() => history.push(`/page=1`), []);
+  useEffect(() => {
+    if (!getUrlPageNumber) history.push(`/page=1`);
+  }, []);
 
   useEffect(() => {
-    const getUrlPageNumber = getNumberFromString(urlPageNumber);
-    setCurrentPageNumber(getUrlPageNumber);
-
     setValue((prevValue) => ({ ...prevValue, isLoading: true }));
 
     value
-      .getProductsListPage(currentPageNumber || 1)
+      .getProductsListPage(getUrlPageNumber || 1)
       .then((data) => {
         setProductPageList(data?.data);
         setTotalPagesNumbers(data?.data?.pager.total_pages);
