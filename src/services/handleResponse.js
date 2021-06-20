@@ -4,7 +4,7 @@ const getProductsListPage = async (pageNumber, searchKeyword = "سیب") => {
       `https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=${searchKeyword}`,
       {
         headers: {
-          token: process.env.REACT_APP_TOKEN,
+          token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
           "Content-Type": "application/json",
         },
       }
@@ -27,7 +27,7 @@ const getProductDetailsPage = async (productId) => {
       `https://www.digikala.com/front-end/product/${productId}`,
       {
         headers: {
-          token: process.env.REACT_APP_TOKEN,
+          token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
           "Content-Type": "application/json",
         },
       }
