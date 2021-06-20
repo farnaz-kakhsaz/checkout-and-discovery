@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
 // Functions
 import { Context } from "../../context/context-provider";
@@ -13,11 +13,9 @@ import "./home-page.styles.css";
 
 export default function HomePage() {
   const history = useHistory();
-  const { value, setValue } = useContext(Context);
   const { urlPageNumber } = useParams();
   const getUrlPageNumber = getNumberFromString(urlPageNumber);
-  const [productPageList, setProductPageList] = useState({});
-  const [totalPagesNumbers, setTotalPagesNumbers] = useState(0);
+  const { value, setValue } = useContext(Context);
 
   useEffect(() => {
     if (!getUrlPageNumber) history.push(`/page=1`);
@@ -31,14 +29,14 @@ export default function HomePage() {
     setValue((prevValue) => ({ ...prevValue, isLoading: true }));
     value
       .getProductsListPage(getUrlPageNumber || 1)
-      .then((data) => {
-        setProductPageList(data?.data);
-        setTotalPagesNumbers(data?.data?.pager.total_pages);
+      .then((data) =>
         setValue((prevValue) => ({
           ...prevValue,
+          totalPagesNumber: data?.data?.pager.total_pages,
+          productListPage: data?.data,
           isLoading: false,
-        }));
-      })
+        }))
+      )
       .catch((error) => {
         setValue((prevValue) => ({ ...prevValue, isLoading: false }));
       });
@@ -57,10 +55,10 @@ export default function HomePage() {
     <div className="home-page-container">
       {!value.isLoading ? (
         <>
-          <CardContainer productPageList={productPageList} />
+          <CardContainer productListPage={value.productListPage} />
           <Pagination
             currentPageNumber={value.currentPageNumber}
-            paginationNumbers={getPaginationNumbers(totalPagesNumbers)}
+            paginationNumbers={getPaginationNumbers(value.totalPagesNumber)}
             handlePaginationClick={handlePaginationClick}
           />
         </>

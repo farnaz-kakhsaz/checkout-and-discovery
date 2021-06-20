@@ -1,7 +1,7 @@
-const getProductsListPage = async (pageNumber) => {
+const getProductsListPage = async (pageNumber, searchKeyword = "سیب") => {
   try {
     const response = await fetch(
-      `https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=سیب`,
+      `https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=${searchKeyword}`,
       {
         headers: {
           token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
@@ -21,7 +21,7 @@ const getProductsListPage = async (pageNumber) => {
   }
 };
 
-const getPDP = async (productId) => {
+const getProductDetailsPage = async (productId) => {
   try {
     const response = await fetch(
       `https://www.digikala.com/front-end/product/${productId}`,
@@ -41,4 +41,4 @@ const getPDP = async (productId) => {
   }
 };
 
-export { getProductsListPage, getPDP };
+export { getProductsListPage, getProductDetailsPage };

@@ -5,10 +5,10 @@ import { getDiscount } from "../../helper/getDiscount";
 // CSS
 import "./card-container.styles.css";
 
-export default function CardContainer({ productPageList }) {
+export default function CardContainer({ productListPage }) {
   return (
     <div className="card-container">
-      {productPageList?.products?.map((item) => (
+      {productListPage?.products?.map((item) => (
         <CardItem
           key={item.id}
           discount={getDiscount(
@@ -23,5 +23,5 @@ export default function CardContainer({ productPageList }) {
 }
 
 CardContainer.propTypes = {
-  productPageList: PropTypes.object.isRequired,
+  productListPage: PropTypes.object.isRequired,
 };

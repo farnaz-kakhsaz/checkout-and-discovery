@@ -66,28 +66,28 @@ export default function CardItem({
   };
 
   return (
-    <Link to="./details">
-      <div className="card-item-container" key={id}>
+    <Link to={`./details/${id}`}>
+      <div className="card-item-container">
         <div className="card-image-container">
           <div className="card-images">
-            <img src={images.main} alt={title}></img>
-            <img src={images.main} alt={title}></img>
+            <img src={images?.main} alt={title}></img>
+            <img src={images?.main} alt={title}></img>
           </div>
           <div className="info-icon-container">
             <InfoIcon className="info-icon" />
             <div className="info-icon-content">
-              {rating.count !== 0 && rating.count ? (
+              {rating?.count !== 0 && rating?.count ? (
                 <>
                   <StarIcon />
-                  <div className="rate">{rating.rate}</div>
-                  <div className="count">({rating.count})</div>
+                  <div className="rate">{rating?.rate}</div>
+                  <div className="count">({rating?.count})</div>
                 </>
               ) : (
-                price.selling_price === price.rrp_price && (
+                price?.selling_price === price?.rrp_price && (
                   <DeadEmojiIcon className="dead-emoji-icon" />
                 )
               )}
-              {price.selling_price !== price.rrp_price && (
+              {price?.selling_price !== price?.rrp_price && (
                 <p className="discount">
                   <span className="discount-percent">%{discount}</span>
                   تخفیف شما از این خرید!
@@ -107,9 +107,9 @@ export default function CardItem({
               <h4 className="card-title-left">{title}</h4>
               <div className="price-container">
                 <p className="price-toman">تومان</p>
-                <p className="price-new">{price.selling_price}</p>
-                {price.selling_price !== price.rrp_price && (
-                  <p className="price-old">{price.rrp_price}</p>
+                <p className="price-new">{price?.selling_price}</p>
+                {price?.selling_price !== price?.rrp_price && (
+                  <p className="price-old">{price?.rrp_price}</p>
                 )}
               </div>
             </div>
@@ -157,5 +157,5 @@ CardItem.propTypes = {
   title: PropTypes.string.isRequired,
   rating: PropTypes.object.isRequired,
   price: PropTypes.object.isRequired,
-  discount: PropTypes.number.isRequired,
+  discount: PropTypes.number,
 };
