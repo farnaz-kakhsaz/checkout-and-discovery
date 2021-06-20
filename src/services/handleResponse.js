@@ -1,5 +1,8 @@
 const getProductsListPage = async (pageNumber, searchKeyword = "سیب") => {
   try {
+    console.log(1, process);
+    console.log(2, process.env);
+    console.log(3, process.env.REACT_APP_SERVER_URL_PRODUCTS_LIST_PAGE);
     const response = await fetch(
       `${process.env.REACT_APP_SERVER_URL_PRODUCTS_LIST_PAGE}?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=${searchKeyword}`,
       {
