@@ -11,7 +11,7 @@ export default function Pagination({
 }) {
   return (
     <div className="pagination-container">
-      {paginationNumbers.map((pageNumber) => (
+      {paginationNumbers.slice(0, 20).map((pageNumber) => (
         <PaginationItem
           currentPageNumber={currentPageNumber}
           pageNumber={pageNumber}
