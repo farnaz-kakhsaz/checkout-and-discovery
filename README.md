@@ -16,7 +16,7 @@
 ### **Additional:**
 
 1. Search through products.
-2. It is possible to change the page number (on the home page) with the URL.
+2. It is possible to change the page number and search through products (on the home page) with the URL.
 3. You can get the product (if you have its id) with the URL on the details page.
 4. Attention to details on the home page and modal cart (cards, hover effects, icons, etc.)
 5. Ability to remove products from both modal cart and cart page.

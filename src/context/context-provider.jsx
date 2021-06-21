@@ -11,7 +11,7 @@ const initialState = {
   isModalOpen: false,
   currentPageNumber: 1,
   totalPagesNumber: 0,
-  searchKeyword: "سیب",
+  searchKeyword: "",
   selectedCardsList:
     JSON.parse(localStorage.getItem("selectedCardsList")) || [],
   addedProductsToCartList: [],

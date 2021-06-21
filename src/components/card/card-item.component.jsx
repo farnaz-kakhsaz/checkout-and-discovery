@@ -66,7 +66,7 @@ export default function CardItem({
   };
 
   return (
-    <Link to={`./details/${id}`}>
+    <Link to={`/details/${id}`}>
       <div className="card-item-container">
         <div className="card-image-container">
           <div className="card-images">

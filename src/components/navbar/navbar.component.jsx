@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import { Context } from "../../context/context-provider";
 // Components
@@ -11,6 +11,7 @@ import Input from "./input.component";
 import "./navbar.styles.css";
 
 export default function Navbar() {
+  const history = useHistory();
   const [isModalOpen, setIsModalOpern] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -22,24 +23,33 @@ export default function Navbar() {
   );
 
   useEffect(() => {
-    setValue((prevValue) => ({ ...prevValue, isLoading: true }));
-    value
-      .getProductsListPage(value.currentPageNumber, inputValue || "سیب")
-      .then((data) => {
-        setValue((prevValue) => ({
-          ...prevValue,
-          searchKeyword: inputValue,
-          totalPagesNumber: data?.data?.pager?.total_pages,
-          productListPage: data?.data,
-          isLoading: false,
-        }));
-      })
-      .catch((error) => {
-        setValue((prevValue) => ({ ...prevValue, isLoading: false }));
-      });
+    if (inputValue && value.currentPageNumber < 20) {
+      setValue((prevValue) => ({ ...prevValue, isLoading: true }));
+      value
+        .getProductsListPage(value.currentPageNumber, inputValue || "سیب")
+        .then((data) => {
+          setValue((prevValue) => ({
+            ...prevValue,
+            searchKeyword: inputValue,
+            totalPagesNumber: data?.data?.pager?.total_pages,
+            productListPage: data?.data,
+            isLoading: false,
+          }));
+        })
+        .catch((error) => {
+          setValue((prevValue) => ({ ...prevValue, isLoading: false }));
+        });
+    }
   }, [inputValue]);
 
-  const handleInputChange = (event) => setInputValue(event.target.value);
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+    history.push(
+      `/page=${value.currentPageNumber}/${
+        event.target.value && "q=" + event.target.value
+      }`
+    );
+  };
 
   const handleModalClick = () => {
     if (value.selectedCardsList.length > 0) {
@@ -61,7 +71,7 @@ export default function Navbar() {
         )}
         {value.isModalOpen && <ModalContainer />}
         <Input inputValue={inputValue} handleInputChange={handleInputChange} />
-        <Link to="/">
+        <Link to="/page=1/q=سیب">
           <HomeIcon />
         </Link>
       </div>

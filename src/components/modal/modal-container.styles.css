@@ -2,7 +2,7 @@
   position: absolute;
   top: 102%;
   left: 25px;
-  width: 350px;
+  max-width: 350px;
   height: fit-content;
   background-color: var(--background-color);
   box-shadow: var(--card-box-shadow);

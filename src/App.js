@@ -20,7 +20,7 @@ function App() {
           <Route path="/details/:id">
             <DetailsPage />
           </Route>
-          <Route path="/:urlPageNumber?">
+          <Route path="/:urlPageNumber?/:urlQuery?">
             <HomePage />
           </Route>
         </Switch>
