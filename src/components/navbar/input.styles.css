@@ -1,0 +1,20 @@
+.input {
+  max-width: 300px;
+  width: 100%;
+  height: 50px;
+  border-radius: var(--border-radius);
+  border: solid thin var(--text-color);
+  text-align: right;
+  direction: rtl;
+  font-size: 1.1rem;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  text-align: center;
+  font-size: 1.1rem;
+  direction: rtl;
+}

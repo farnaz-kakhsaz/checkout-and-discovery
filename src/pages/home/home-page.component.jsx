@@ -8,6 +8,9 @@ import { getPaginationNumbers } from "../../helper/getPaginationNumbers";
 import CardContainer from "../../components/card/card-container.component";
 import Pagination from "../../components/pagination/pagination-container.component";
 import SpinnerIcon from "../../components/spinner-icon/spinner-icon.component";
+// Images
+import { ReactComponent as DeadEmojiIcon } from "../../assets/images/icon-dead-emoji.svg";
+
 // CSS
 import "./home-page.styles.css";
 
@@ -28,7 +31,7 @@ export default function HomePage() {
   useEffect(() => {
     setValue((prevValue) => ({ ...prevValue, isLoading: true }));
     value
-      .getProductsListPage(getUrlPageNumber || 1)
+      .getProductsListPage(getUrlPageNumber || 1, value.searchKeyword || "سیب")
       .then((data) =>
         setValue((prevValue) => ({
           ...prevValue,
@@ -54,14 +57,18 @@ export default function HomePage() {
   return (
     <div className="home-page-container">
       {!value.isLoading ? (
-        <>
-          <CardContainer productListPage={value.productListPage} />
-          <Pagination
-            currentPageNumber={value.currentPageNumber}
-            paginationNumbers={getPaginationNumbers(value.totalPagesNumber)}
-            handlePaginationClick={handlePaginationClick}
-          />
-        </>
+        value.productListPage.products.length > 0 ? (
+          <>
+            <CardContainer productListPage={value.productListPage} />
+            <Pagination
+              currentPageNumber={value.currentPageNumber}
+              paginationNumbers={getPaginationNumbers(value.totalPagesNumber)}
+              handlePaginationClick={handlePaginationClick}
+            />
+          </>
+        ) : (
+          <DeadEmojiIcon className="home-page-dead-emoji-icon" />
+        )
       ) : (
         <SpinnerIcon />
       )}

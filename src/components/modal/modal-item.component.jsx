@@ -31,8 +31,8 @@ ModalItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   images: PropTypes.object.isRequired,
-  rating: PropTypes.object.isRequired,
-  price: PropTypes.object.isRequired,
-  discount: PropTypes.number.isRequired,
+  rating: PropTypes.object,
+  price: PropTypes.object,
+  discount: PropTypes.number,
   handleRemoveFromCartClick: PropTypes.func.isRequired,
 };

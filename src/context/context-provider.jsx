@@ -11,12 +11,14 @@ const initialState = {
   isModalOpen: false,
   currentPageNumber: 1,
   totalPagesNumber: 0,
+  searchKeyword: "سیب",
   selectedCardsList:
     JSON.parse(localStorage.getItem("selectedCardsList")) || [],
   addedProductsToCartList: [],
   productListPage: {},
   productDetailsPage: {},
-  getProductsListPage: (pageNumber) => getProductsListPage(pageNumber),
+  getProductsListPage: (pageNumber, searchKeyword) =>
+    getProductsListPage(pageNumber, searchKeyword),
   getProductDetailsPage: (id) => getProductDetailsPage(id),
 };
 

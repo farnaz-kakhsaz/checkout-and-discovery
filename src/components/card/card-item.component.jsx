@@ -84,7 +84,7 @@ export default function CardItem({
                 </>
               ) : (
                 price?.selling_price === price?.rrp_price && (
-                  <DeadEmojiIcon className="dead-emoji-icon" />
+                  <DeadEmojiIcon className="cart-item-dead-emoji-icon" />
                 )
               )}
               {price?.selling_price !== price?.rrp_price && (
