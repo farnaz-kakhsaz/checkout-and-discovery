@@ -1,7 +1,7 @@
 const getProductsListPage = async (pageNumber, searchKeyword) => {
   try {
     const response = await fetch(
-      `https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=${searchKeyword}`,
+      `${process.env.REACT_APP_HEROKU ? process.env.REACT_APP_HEROKU : ""}https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=${searchKeyword}`,
       {
         headers: {
           token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
@@ -24,7 +24,7 @@ const getProductsListPage = async (pageNumber, searchKeyword) => {
 const getProductDetailsPage = async (productId) => {
   try {
     const response = await fetch(
-      `https://www.digikala.com/front-end/product/${productId}`,
+      `${process.env.REACT_APP_HEROKU ? process.env.REACT_APP_HEROKU : ""}https://www.digikala.com/front-end/product/${productId}`,
       {
         headers: {
           token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
