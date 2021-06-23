@@ -1,10 +1,10 @@
 const getProductsListPage = async (pageNumber, searchKeyword) => {
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_SERVER_URL_PRODUCTS_LIST_PAGE}?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=${searchKeyword}`,
+      `https://www.digikala.com/front-end/search/?page=${pageNumber}&rows=20&price[min]=0&price[max]=100000&has_selling_stock=1&sort=4&q=${searchKeyword}`,
       {
         headers: {
-          token: process.env.REACT_APP_TOKEN,
+          token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
           "Content-Type": "application/json",
         },
       }
@@ -24,10 +24,10 @@ const getProductsListPage = async (pageNumber, searchKeyword) => {
 const getProductDetailsPage = async (productId) => {
   try {
     const response = await fetch(
-      `${process.env.REACT_APP_HEROKU}${process.env.REACT_APP_SERVER_URL_PRODUCT_DETAILS_PAGE}${productId}`,
+      `https://cors-anywhere.herokuapp.com/https://www.digikala.com/front-end/product/${productId}`,
       {
         headers: {
-          token: process.env.REACT_APP_TOKEN,
+          token: "mpfKW9ghVTCSuBZ7qTkSmEyvL38ShZxv",
           "Content-Type": "application/json",
         },
       }
