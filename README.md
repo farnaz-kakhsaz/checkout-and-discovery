@@ -31,7 +31,7 @@
 
 ### **Important note:**
 
-If when you clicked on the card and didn't see any card info on the details page, or saw `403 (Forbidden)` error in the console, please go to here [cors-anywhere.herokuapp.com/corsdemo](https://cors-anywhere.herokuapp.com/corsdemo) and click on **Request temporary access to the demo server** button to see this message **You currently have temporary access to the demo server.**
+If when you clicked on the card and didn't see any card info on the details page, or saw `403 (Forbidden)` error in the console, please go here [cors-anywhere.herokuapp.com/corsdemo](https://cors-anywhere.herokuapp.com/corsdemo) and click on **Request temporary access to the demo server** button to see this message **You currently have temporary access to the demo server.**
 
 ![image](https://user-images.githubusercontent.com/37678729/123411442-b496fe00-d5c5-11eb-8cd4-4ce79da6e2cb.png)
 
