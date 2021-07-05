@@ -11,7 +11,6 @@ const getProductsListPage = async (pageNumber, searchKeyword) => {
     );
 
     const data = await response.json();
-    localStorage.setItem("data", JSON.stringify(data));
 
     return data;
   } catch (error) {

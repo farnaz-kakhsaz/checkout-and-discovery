@@ -11,14 +11,11 @@ export default function Pagination({
 }) {
   return (
     <div className="pagination-container">
-      {paginationNumbers.slice(0, 20).map((pageNumber) => (
-        <PaginationItem
-          currentPageNumber={currentPageNumber}
-          pageNumber={pageNumber}
-          handlePaginationClick={handlePaginationClick}
-          key={pageNumber}
-        />
-      ))}
+      <PaginationItem
+        paginationNumbers={paginationNumbers}
+        currentPageNumber={currentPageNumber}
+        handlePaginationClick={handlePaginationClick}
+      />
     </div>
   );
 }

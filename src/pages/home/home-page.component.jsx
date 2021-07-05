@@ -34,7 +34,7 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    if (value.currentPageNumber <= 22) {
+    if (value.currentPageNumber) {
       setValue((prevValue) => ({ ...prevValue, isLoading: true }));
       value
         .getProductsListPage(
@@ -46,6 +46,7 @@ export default function HomePage() {
             ...prevValue,
             totalPagesNumber: data?.data?.pager.total_pages,
             productListPage: data?.data,
+            currentPageNumber: getUrlPageNumber || 1,
             isLoading: false,
           }))
         )
@@ -55,13 +56,19 @@ export default function HomePage() {
     }
   }, [value.currentPageNumber, location.pathname]);
 
-  const handlePaginationClick = (newPageNumber) => {
-    setValue((prevValue) => ({
-      ...prevValue,
-      currentPageNumber: newPageNumber,
-    }));
+  const handlePaginationClick = (newPageNumber, disabledClick) => (event) => {
+    if (!disabledClick) {
+      setValue((prevValue) => ({
+        ...prevValue,
+        currentPageNumber: newPageNumber,
+      }));
 
-    history.push(`/page=${newPageNumber}`);
+      history.push(
+        `/page=${newPageNumber}/q=${
+          value.searchKeyword || getUrlQuery || "سیب"
+        }`
+      );
+    }
   };
 
   return (

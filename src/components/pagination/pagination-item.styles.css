@@ -28,3 +28,11 @@
 .pagination-item-selected {
   background-color: var(--secondary-color);
 }
+
+.pagination-item-disabled,
+.pagination-item-disabled:hover {
+  background-color: var(--gray-middle-color);
+  color: var(--text-color);
+  transform: scale(1);
+  cursor: default;
+}
